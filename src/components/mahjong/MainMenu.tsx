@@ -131,6 +131,10 @@ export const MainMenu = () => {
         round. Red dragons are lucky wilds, white dragons curse your last move, and green dragons
         simply pass through.
       </Text>
+
+      <Text size="xs" c="dimmed" maw={480} mt="lg">
+        Created by Ron Vargas
+      </Text>
     </Stack>
   );
 };
