@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b3d2e;
+  --foreground: #f4ead6;
+  --color-felt: #0f4a37;
+  --color-felt-dark: #093024;
+  --color-tile-face: #fbf7ee;
+  --color-tile-shadow: #00000055;
+  --color-accent: #d8a657;
+  --color-accent-soft: #f0cf94;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-felt: var(--color-felt);
+  --color-felt-dark: var(--color-felt-dark);
+  --color-tile-face: var(--color-tile-face);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: radial-gradient(ellipse at top, var(--color-felt) 0%, var(--color-felt-dark) 70%);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100dvh;
+}
+
+@keyframes tile-deal {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tile-discard {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9) rotate(-6deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes tile-shift {
+  from {
+    transform: translateY(-30px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 2px var(--color-accent-soft), 0 0 12px 0 transparent;
+  }
+  50% {
+    box-shadow: 0 0 0 2px var(--color-accent-soft), 0 0 18px 4px color-mix(in srgb, var(--color-accent-soft) 35%, transparent);
+  }
+}
+
+@keyframes tile-fly-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tile-deal {
+  animation: tile-deal 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-tile-shift {
+  animation: tile-shift 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-tile-fly-in {
+  animation: tile-fly-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-tile-discard {
+  animation: tile-discard 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 1.8s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-tile-deal,
+  .animate-tile-shift,
+  .animate-tile-fly-in,
+  .animate-tile-discard,
+  .animate-pulse-glow,
+  .animate-fade-in-up {
+    animation: none;
+  }
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
